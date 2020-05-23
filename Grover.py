@@ -24,7 +24,7 @@
 # have been flagged, and you may swap out one method for another if you wish.
 #
 #
-# Here is an overview of the quantum circuit that amkes up Grover's Algorithm
+# Here is an overview of the quantum circuit that makes up Grover's Algorithm
 # for two qubits plus a control qubit.
 #
 # |0> H --+----+-- H X . X H ------- M

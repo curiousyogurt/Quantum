@@ -1,6 +1,12 @@
 # Quantum
 Grover.py simulates Grover's Algorithm (a quantum circuit) on a classical computer using Python and the QuTiP library.  Grover's Algorithm is an  unstructured search algorithm.  For this script, we take an <input_string>, which is a string of 0s (the "haystack"), with the exception of a single 1 (the "needle").  The goal of the algorithm is to determine the position of the needle.
 
+Here is an overview of the quantum circuit that makes up Grover's Algorithm for two qubits plus a control qubit.
+
+> |0> H --+----+-- H X . X H ------- M
+> |0> H --| Uf |-- H X Z X H ------- M
+> |1> H --+----+-------------- H X ---
+
 ## Prerequisites
 
 The script runs under Python 3.8.2, and assumes the following libraries are available:
