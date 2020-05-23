@@ -1,7 +1,5 @@
 # Quantum
-Grover.py simulates Grover's Algorithm (a quantum circuit) on a classical computer using Python and the QuTiP library.
-
-Grover's Algorithm is an  unstructured search algorithm.  For this script, we take an <input_string>, which is a string of 0s (the "haystack"), with the exception of a single 1 (the "needle").  The goal of the algorithm is to determine the position of the needle.
+Grover.py simulates Grover's Algorithm (a quantum circuit) on a classical computer using Python and the QuTiP library.  Grover's Algorithm is an  unstructured search algorithm.  For this script, we take an <input_string>, which is a string of 0s (the "haystack"), with the exception of a single 1 (the "needle").  The goal of the algorithm is to determine the position of the needle.
 
 ## Prerequisites
 
@@ -13,6 +11,7 @@ The script runs under Python 3.8.2, and assumes the following libraries are avai
 
 ## Using Grover.py
 
+From the command line:
 `python Grover.py`
 
 1. Without any modifications, the script creates a random search problem with a single target, and uses a simulated circuit to discover the target.
