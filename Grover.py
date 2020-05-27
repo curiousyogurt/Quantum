@@ -44,7 +44,6 @@
 # Part Two:   Set up Qubits and Gates
 # Part Three: Perform the Calculations
 # Part Four:  Results and Interpretation
-#
 ##############################################################################
 
 from qutip.qip.operations import *
@@ -52,13 +51,26 @@ from qutip.qip.circuit import *
 from qutip import basis, tensor, sigmax, qeye, Qobj
 from numpy import *
 
+#############################################################################
+# Part One: Generate input_string and call needle_init()
+#############################################################################
 
-##############################################################################
-# Function: needle_random()
-##############################################################################
+# In Part One, we generate <input_string>, which is composed entirely of 0s,
+# except for a single 1 that represents the item we are searching for in the
+# list.  The length of <input_string> should be a power-of-2, which is
+# important to node for needle_explicit().
+
+# Method 1.  Randomly generated.    Call needle_random()
+# Method 2.  Explicitl assignment.  Call needle_explicit()
+# Method 3.  Position in binary.    Call needle_binary()
+# Method 4.  Position in decimal.   Call needle-decimal()
+
+#-----------------------------------------------------------------------------
+# Function: needle_random(max)
+#-----------------------------------------------------------------------------
 # Generate input_string randomly, on the basis of a random integer.
 # max: the upper limit for the random integer, as a power of 2.
-##############################################################################
+#-----------------------------------------------------------------------------
 def needle_random(max=5):
     random_length       = 2 ** random.randint(1,max)
     random_input_string = '0' * random_length
@@ -68,13 +80,13 @@ def needle_random(max=5):
     input_string        = random_input_string
     return input_string
 
-##############################################################################
-# Function: needle_explicit()
-##############################################################################
+#-----------------------------------------------------------------------------
+# Function: needle_explicit(input_string)
+#-----------------------------------------------------------------------------
 # Generate input_string randomly, on the basis of an explicit string.  Remember
 # that the string length must be a power-of-2.
 # input_string: the string to return
-##############################################################################
+#-----------------------------------------------------------------------------
 def needle_explicit(input_string = '0010' + ('0' * 60)):
     # Suggestions:
     # 128: input_string = '0010' + ('0' * 124)
@@ -82,12 +94,12 @@ def needle_explicit(input_string = '0010' + ('0' * 60)):
     # 512: input_string = '0010' + ('0' * 508)
     return input_string
 
-##############################################################################
-# Function: needle_binary()
-##############################################################################
+#-----------------------------------------------------------------------------
+# Function: needle_binary(binary_needle_position)
+#-----------------------------------------------------------------------------
 # Generate input_string randomly, on the basis of binary position.
 # binary_needle_position: the position in binary
-##############################################################################
+#-----------------------------------------------------------------------------
 def needle_binary(binary_needle_position = '0100'):
     decimal_needle_position = int(binary_needle_position, 2)
     input_string_length     = 2**math.ceil(math.log(decimal_needle_position+1,2))
@@ -97,12 +109,12 @@ def needle_binary(binary_needle_position = '0100'):
                                                     decimal_needle_position - 1)
     return input_string
 
-##############################################################################
-# Function: needle_binary()
-##############################################################################
+#-----------------------------------------------------------------------------
+# Function: needle_decimal()
+#-----------------------------------------------------------------------------
 # Generate input_string randomly, on the basis of decimal position.
 # decimal_needle_position: the position in decimal
-##############################################################################
+#-----------------------------------------------------------------------------
 def needle_decimal(decimal_needle_position = 5):
     input_string_length     = 2**math.ceil(math.log(decimal_needle_position+1,2))
     input_string            = '0' * decimal_needle_position
@@ -111,11 +123,11 @@ def needle_decimal(decimal_needle_position = 5):
                                                    decimal_needle_position - 1)
     return input_string
 
-##############################################################################
+#-----------------------------------------------------------------------------
 # Function: needle_init()
-##############################################################################
+#-----------------------------------------------------------------------------
 # Initialise the needle position based on input_string
-##############################################################################
+#-----------------------------------------------------------------------------
 def needle_init(input_string):
 
     # Given <input_string>, get the length and calculate the required number
@@ -135,26 +147,6 @@ def needle_init(input_string):
             {'position': needle_position,
             'binary': needle_binary,
             'binary_length': needle_binary_length})
-
-#############################################################################
-# Part One: Generate input_string and call needle_init()
-#############################################################################
-
-# In Part One, we generate <input_string>, which is composed entirely of 0s,
-# except for a single 1 that represents the item we are searching for in the
-# list.  The length of <input_string> should be a power-of-2, which is
-# important to node for needle_explicit().
-
-# Method 1.  Randomly generated.    Call needle_random()
-# Method 2.  Explicitl assignment.  Call needle_explicit()
-# Method 3.  Position in binary.    Call needle_binary()
-# Method 4.  Position in decimal.   Call needle-decimal()
-
-# Then init the needle with input_string.  needle_init returns two
-# dictionaries that contain the information we need for the rest of the
-# script.  Store these dictionaries as input and needle.
-input_string = needle_random()
-input,needle = needle_init(input_string)
 
 ##############################################################################
 # Part Two: Set up Qubits and Gates
@@ -181,12 +173,12 @@ input,needle = needle_init(input_string)
 # determines how many times the circuit loops in order to maxmise the
 # chance of identifying the position of the needle.
 
-##############################################################################
-# Function: needle_init()
-##############################################################################
-# Initialise the needle position based on input_string
-##############################################################################
-def circuit():
+#-----------------------------------------------------------------------------
+# Function: circuit()
+#-----------------------------------------------------------------------------
+# Initialise the elements of the circuit (qubits and gates)
+#-----------------------------------------------------------------------------
+def circuit(input,needle):
     # ------
     # qubits
     # ------
@@ -238,11 +230,11 @@ def circuit():
     #
     # We include both methods, because each provides some insight.
 
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     # Function: uf1()
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     # Method 1 for Generating the Uf (= phase inversion) Gate
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     def uf1():
 
         # Uf may be done in a number of ways.  The first is to break down Uf a
@@ -294,11 +286,11 @@ def circuit():
         Uf = UfXI * CxNOT * UfXI
         return Uf
 
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     # Function: uf2()
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     # Method 2 for Generating the Uf (= phase inversion) Gate
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     def uf2():
 
         # Another way to create Uf is to do so directly, by generating a zero matrix
@@ -328,11 +320,11 @@ def circuit():
     #
     # Again, we include both methods, because each provides some insight.
 
-    ##############################################################################
-    # Function: uf2()
-    ##############################################################################
+    #-----------------------------------------------------------------------------
+    # Function: dif1()
+    #-----------------------------------------------------------------------------
     # Method 1 for the Dif (= inversion about the mean) Gate
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     def dif1():
 
         # Generate the diffusion operator Dif.  This operator leaves the control qubit
@@ -379,11 +371,11 @@ def circuit():
         Dif = HxI * XxI * CxZI * XxI * HxI
         return Dif
 
-    ##############################################################################
-    # Function: uf2()
-    ##############################################################################
+    #-----------------------------------------------------------------------------
+    # Function: dif2()
+    #-----------------------------------------------------------------------------
     # Method 2 for the Dif (= inversion about the mean) Gate
-    ##############################################################################
+    #-----------------------------------------------------------------------------
     def dif2():
 
         # The other way to generate Dif is to calculate -I+2A, where A is the matrix
@@ -437,9 +429,9 @@ def circuit():
             'IxH': IxH,
             'IxX': IxX}
 
-##############################################################################
-# Function: repeat()
-##############################################################################
+#-----------------------------------------------------------------------------
+# Function: repeat(required_qubits)
+#-----------------------------------------------------------------------------
 # Phase inversion (Uf) + the Diffusion operator (Dif) are repeated pi/4 *
 # sqrt(2^n) times, where n is the number of qubits (not including control).
 # This picks out and then amplifies the result so that the answer is easy to
@@ -447,18 +439,12 @@ def circuit():
 # "overcooked" (meaning we move away from the ideal solution).
 #
 # required_qubits: number of loops depend on number of qubits in the circuit
-##############################################################################
+#-----------------------------------------------------------------------------
 def repeat(required_qubits):
     # We might think that int(around((pi/4) * sqrt(2**input['required_qubits'])))
     # would be preferable.  But this leads to 2-qubit (+1 control) circuits being
     # run twice instead of once, which overcooks the results.
     return int((pi/4) * sqrt(2**(required_qubits)))
-
-# Generate elements of the circuit
-circuit = circuit()
-
-# Detremine how many times to repeat Phase Inversion and Diffusion
-repeat = repeat(input['required_qubits'])
 
 ##############################################################################
 # Part Three: Perform the Calculations
@@ -469,73 +455,112 @@ repeat = repeat(input['required_qubits'])
 # H to every qubit; then Uf (phase inversion); then Dif (inversion about the
 # mean); then finish off by applying H and X to the control.
 
-# Begin with applying H to Q
-current_state = circuit['H'] * circuit['Q']
-
-# Now repeat Uf and Dif <repeat> times.  This is the Grover Iteration.
-for i in range(repeat):
-    current_state = circuit['Uf'] * current_state
-    current_state = circuit['Dif'] * current_state
-    current_state = Qobj(current_state)
-#   # Uncomment the following if you want to see the state at each step
-#   print("Uf/Dif [", i, "]", current_state)
-
-# Now apply IxH and IxX.  This is not really requried in order to make
-# Grover's Algorithm work, but it gooses the results to make them
-# extremely obvious.  If you want to remove this line, replace it with
-# current_state = current_state.full().
+#-----------------------------------------------------------------------------
+# Function: run_circuit(circuit, repeat)
+#-----------------------------------------------------------------------------
+# Perform the calcualtions to simulate the circuit.  Repeat Uf/Dif the
+# appropriate numebr of times.
 #
-current_state = circuit['IxX'] * circuit['IxH'] * current_state.full()
-# current_state = current_state.full()
+# circuit: dictionary for the circuit (expected: Q, H, Uf, Dif, IxH, IxX)
+# repeat: integer representing the number of times to run Uf/Dif
+#-----------------------------------------------------------------------------
+def run_circuit(circuit,repeat):
+    # Begin with applying H to Q
+    current_state = circuit['H'] * circuit['Q']
+
+    # Now repeat Uf and Dif <repeat> times.  This is the Grover Iteration.
+    for i in range(repeat):
+        current_state = circuit['Uf'] * current_state
+        current_state = circuit['Dif'] * current_state
+        current_state = Qobj(current_state)
+        # Uncomment the following if you want to see the state at each step
+        # print("Uf/Dif [", i, "]", current_state)
+
+    # Now apply IxH and IxX.  This is not really requried in order to make
+    # Grover's Algorithm work, but it amplifies the results to make them
+    # extremely obvious.  If you want to remove this line, replace it with
+    # current_state = current_state.full().
+    current_state = circuit['IxX'] * circuit['IxH'] * current_state.full()
+    return current_state
 
 ##############################################################################
 # Part Four: Results and Interpretation
 ##############################################################################
 
-# Get the indices of the standout values in the matrix.
-max_state = argmax(current_state)
-max_state_value = abs(current_state[max_state,0])
-min_state = argmin(current_state)
-min_state_value = abs(current_state[min_state,0])
+#-----------------------------------------------------------------------------
+# Function: results(input, needle, repeat, current_state)
+#-----------------------------------------------------------------------------
+# Print results to the console.
+#
+# input: dictionary containing string, string_length, required_qubits
+# needle: dictionary containing position, binary, binary length
+# repeat: integer representing the number of times to run Uf/Dif
+# current_state: results after running the circuit
+#-----------------------------------------------------------------------------
+def results(input,needle,repeat,current_state):
+    # Get the indices of the standout values in the matrix.
+    max_state = argmax(current_state)
+    max_state_value = abs(current_state[max_state,0])
+    min_state = argmin(current_state)
+    min_state_value = abs(current_state[min_state,0])
 
-# Setting <result> to half the standout value will give us the position
-# of the 1 <input['string']>.
-if max_state_value > min_state_value:
-    result = max_state
-    result_value = max_state_value
-else:
-    result = min_state
-    result_value = min_state_value
-result = int(result/2)
-
-# Print the combined state, and flag the result
-print('-' * 60)
-print('Combined state:')
-for i in range(current_state.size):
-    if i == result*2:
-        flag = '*****'
+    # Setting <result> to half the standout value will give us the position
+    # of the 1 <input['string']>.
+    if max_state_value > min_state_value:
+        result = max_state
+        result_value = max_state_value
     else:
-        flag = ''
-    print(binary_repr(i,input['required_qubits']+1), ':', current_state.item(i),flag)
+        result = min_state
+        result_value = min_state_value
+    result = int(result/2)
 
-# Output all results
-print('-' * 60)
-print('Input string             :', input['string'])
-print('Actual Position (decimal):', needle['position'])
-print('Actual Postiion (binary) :', needle['binary'])
-print('Iterations required      :', repeat)
-print('Qubits required          :', input['required_qubits'], '(+1 control)')
+    # Print the combined state, and flag the result
+    print('-' * 60)
+    print('Combined state:')
+    for i in range(current_state.size):
+        if i == result*2:
+            flag = '*****'
+        else:
+            flag = ''
+        print(binary_repr(i,input['required_qubits']+1), ':', current_state.item(i),flag)
 
-print('State of winning qubit   :', current_state[max_state,0])
+    # Output all results
+    print('-' * 60)
+    print('Input string             :', input['string'])
+    print('Actual Position (decimal):', needle['position'])
+    print('Actual Postiion (binary) :', needle['binary'])
+    print('Iterations required      :', repeat)
+    print('Qubits required          :', input['required_qubits'], '(+1 control)')
 
-# Double-check by comparing <result> with the index of the 1 in the string.
-# Flag the confirmation or the error.
-check = input['string'].find('1')
-if result == check:
-    confirmed = '(confirmed)'
-else:
-    confirmed = '(error)'
+    print('State of winning qubit   :', current_state[max_state,0])
 
-# Print results
-print('Calculated position      : {} {}'.format(result,confirmed))
-print('-' * 60)
+    # Double-check by comparing <result> with the index of the 1 in the string.
+    # Flag the confirmation or the error.
+    check = input['string'].find('1')
+    if result == check:
+        confirmed = '(confirmed)'
+    else:
+        confirmed = '(error)'
+
+    # Print results
+    print('Calculated position      : {} {}'.format(result,confirmed))
+    print('-' * 60)
+
+##############################################################################
+# Main
+##############################################################################
+
+# Part One: init input_string using a method, and call needle_init
+input_string = needle_random()
+input,needle = needle_init(input_string)
+
+# Part Two: init the circuit (qubits and gates) and determine how many times
+# to repeat the Uf/Dif sequence.
+circuit = circuit(input,needle)
+repeat = repeat(input['required_qubits'])
+
+# Part Three: execute the circuit
+current_state = run_circuit(circuit,repeat)
+
+# Part Four: Output the results
+results(input,needle,repeat,current_state)
