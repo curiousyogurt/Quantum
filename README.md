@@ -2,7 +2,7 @@
 
 Deutsch.py, Deutsch-Jozsa.py, and Grover.py simulate quantum circuits (Deutsch's Algorithm, the Deutsch-Jozsa Algorithm, and Grover's Algorithm respectively) on a classical using Python and the QuTiP library.  The code is heavily commented and intended for educational purposes.  For Grover's Algorithm, sometimes several methods will be given for a single objective (these have been flagged in the code).
 
-For more information on the Deutsch-Jozsa Algorithm, consider: Nielsen, Michael A. and Isaac L. Chung. _Quantum Computation and Quantum Information_.  10th Anniversary Edition.  Cambridge: Cambridge University Press.  Sections: 1.4.3 (Deutsch), 1.4..4 (Deutsch-Jozsa), 6.2 (Grover).
+For more information on the Deutsch-Jozsa Algorithm, consider: Nielsen, Michael A. and Isaac L. Chung. _Quantum Computation and Quantum Information_.  10th Anniversary Edition.  Cambridge: Cambridge University Press.  See section 1.4.3 for Deutsch, 1.4.4 for Deutsch-Jozsa, and 6.2 Grover.
 
 ## Requirements
 
