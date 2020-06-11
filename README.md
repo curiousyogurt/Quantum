@@ -25,7 +25,7 @@ Here is an overview of the quantum circuit that implements Deutsch's Algorithm:
 From the command line:
 `python Deutsch.py`
 
-Without any modifications, the script runs for a constant f: f(0)=1, f(1)=1.
+Without any modifications, the script runs for a constant f: f(0)=1, f(1)=1, and uses the simulated circuit to determine f is constant.
 
 ## Grover's Algorithm
 
@@ -42,4 +42,4 @@ Here is an overview of the quantum circuit that makes up Grover's Algorithm for 
 From the command line:
 `python Grover.py`
 
-Without any modifications, the script creates a random search problem with a single target, and uses a simulated circuit to discover the target.
+Without any modifications, the script creates a random search problem with a single target, and uses the simulated circuit to discover the target.
