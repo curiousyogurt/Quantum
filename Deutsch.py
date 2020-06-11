@@ -1,8 +1,8 @@
 #############################################################################
 # This script implements Deutsch's Algorithm.  Deutsch's Algorithm is a
-# deterministic qunatum algorithm devised by David Deutsch in 1985 that
-# functions as a proof of concept, in that the quantum circut runs in fewer
-# steps than does the classical algorihm.
+# deterministic quantum algorithm devised by David Deutsch in 1985 that
+# functions as a proof of concept, in that the quantum circuit runs in fewer
+# steps than does the classical algorithm.
 #
 # The problem is as follows: given function f, with possible inputs 0 and 1,
 # and possible outputs 0 and 1, determine whether f is constant or balanced,
@@ -40,9 +40,9 @@
 #         +----+
 #
 # The qubits start in state |0> and |1> respectively.  H is the Hadamard
-# gate.  Uf is the oracle (which encodes function f).  At M, we meeasure only
+# gate.  Uf is the oracle (which encodes function f).  At M, we measure only
 # the top qubit.  If we measure the top qubit in state |0>, we know f is
-# constant;  if we mesaure the top qubit in state |1>, we know f is balanced.
+# constant;  if we measure the top qubit in state |1>, we know f is balanced.
 ##############################################################################
 
 from qutip.qip.operations import *
