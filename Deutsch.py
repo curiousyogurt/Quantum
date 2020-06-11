@@ -66,9 +66,10 @@ def circuit(input_string='11'):
     # input_string = '11' # Constant - f(x) = 1
     # input_string = '01' # Balanced = f(x) = x
     # input_string = '10' # Balanced = f(x) = not-x
+    ##############################################################################
 
     ##############################################################################
-    # Now set up all the elements necessary to execute the quantum circuit of
+    # Set up all the elements necessary to execute the quantum circuit of
     # Deutsch's Algorithm, and run the algorithm.
     ##############################################################################
 
@@ -84,11 +85,11 @@ def circuit(input_string='11'):
 
     ##############################################################################
     # Construct Uf gate based on input_string according to the following schema:
-    # '00' identity (quantum wire) on top and bottom qubits
-    # '11' identity on top qubit, NOT (X) on bottom qubit
-    # '01' CNOT (control on top qubit)
-    # '10' CNOT (control on top qubit), followed by identity on the top qubit,
-    #      and NOT on the bottom qubit
+    # '00' ==> identity (quantum wire) on top and bottom qubits
+    # '11' ==> identity on top qubit, NOT (X) on bottom qubit
+    # '01' ==> CNOT (control on top qubit)
+    # '10' ==> CNOT (control on top qubit), followed by identity on the top qubit,
+    #          and NOT on the bottom qubit
     ##############################################################################
 
     if input_string == '00':
