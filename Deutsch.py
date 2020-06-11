@@ -31,17 +31,15 @@
 #     Cambridge: Cambridge University Press.
 #     Section 6.2, pp. 255-261.
 #
-# This script is intended for learning purposes, and is heavily commented.
-
-# Here is an overview of the quantum circuit that makes up Grover's Algorithm
-# for two qubits plus a control qubit.
+# Here is an overview of the quantum circuit that makes up Deutsch's Algorithm
+# for a top and bottom qubit.
 #
 #         +----+
 # |0> H --| Uf |-- H ------- M
 # |1> H --|    |------------
 #         +----+
 #
-# the qubits start in state |0> and |1> respectively.  H is the Hadamard
+# The qubits start in state |0> and |1> respectively.  H is the Hadamard
 # gate.  Uf is the oracle (which encodes function f).  At M, we meeasure only
 # the top qubit.
 ##############################################################################
@@ -64,7 +62,7 @@ input_string = '10' # Balanced = f(x) = not-x
 
 ##############################################################################
 # Now set up all the elements necessary to execute the quantum circuit of
-# Deutsch's Algorithm.
+# Deutsch's Algorithm, and run the algorithm.
 ##############################################################################
 
 # Top (q0) and bottom (q1) qubits
@@ -102,6 +100,10 @@ HI = tensor(H,I)
 
 # Run the quantum circuit
 result = HI * Uf * HH * Q
+
+##############################################################################
+# Print and interpret results.
+##############################################################################
 
 print('-' * 60)
 print("|00>", result[0][0])
