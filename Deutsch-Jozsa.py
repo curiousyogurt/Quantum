@@ -1,7 +1,7 @@
 #############################################################################
-# Thi script implements the Deutsch-Jozsa Algorithm, which is a general
+# This script implements the Deutsch-Jozsa Algorithm, which is a general
 # version of Deutsch's Algorithm.  The Deutsch-Jozsa Algorithm is a
-# deterministic quatum algorithm devised by David Deutsch and Richard Jozsa
+# deterministic quantum algorithm devised by David Deutsch and Richard Jozsa
 # in 1992.
 #
 # The problem is as follows: given a string, each of whose digits is either
