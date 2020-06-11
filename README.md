@@ -1,6 +1,6 @@
 # Quantum Circuits: Deutsch's Algorithm and Grover's Algorithm
 
-Deutsch.py and Grover.py simulate quantum circuits (Deutsch's Algorithm and Grover's Algorithm respectively) on a classical using Python and the QuTiP library.The code is heavily commented and intended for educational purposes.  In the code for Grover's Algorithm, sometimes several methods will be given for a single objective (these have been flagged in the code).
+Deutsch.py and Grover.py simulate quantum circuits (Deutsch's Algorithm and Grover's Algorithm respectively) on a classical using Python and the QuTiP library.The code is heavily commented and intended for educational purposes.  For Grover's Algorithm, sometimes several methods will be given for a single objective (these have been flagged in the code).
 
 ## Requirements
 
