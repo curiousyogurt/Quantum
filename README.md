@@ -20,7 +20,7 @@ Here is an overview of the quantum circuit that implements Deutsch's Algorithm:
 
             +----+
     |0> H --| Uf |-- H ------- M
-    |1> H --|    |------------
+    |1> H --|    |--------------
             +----+
 ### Using Deutsch.py
 
