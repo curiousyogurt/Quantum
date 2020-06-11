@@ -36,7 +36,7 @@
 #
 #         +----+
 # |0> H --| Uf |-- H ------- M
-# |1> H --|    |------------
+# |1> H --|    |--------------
 #         +----+
 #
 # The qubits start in state |0> and |1> respectively.  H is the Hadamard
